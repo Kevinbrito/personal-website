@@ -51,7 +51,7 @@ body {
     transform: translateZ(0);
 }
 
-/* Individual Circle Variations */
+/* Individual Circle Variations - Randomized Sizes & Vibrancy */
 .circles li:nth-child(1) { left: 25%; width: 45px; height: 45px; animation-delay: 0s; animation-duration: 20s; background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.05) 80%, transparent 100%); }
 .circles li:nth-child(2) { left: 10%; width: 32px; height: 32px; animation-delay: 2s; animation-duration: 12s; background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.1) 80%, transparent 100%); }
 .circles li:nth-child(3) { left: 70%; width: 18px; height: 18px; animation-delay: 4s; animation-duration: 18s; background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.35) 50%, rgba(255, 255, 255, 0.08) 80%, transparent 100%); }
