@@ -10,8 +10,15 @@ import "../styles/global.css";
 		<link rel="icon" type="image/svg+xml" href={Astro.base + "favicon.svg"} />
 		<meta name="generator" content={Astro.generator} />
 		<title>Kevin Brito</title>
-		<!-- Font Awesome Icons -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+		<!-- Font Awesome Icons (CDN, do NOT prepend Astro.base) -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+			integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
 	</head>
 	<body>
 		<!-- Background Animation -->
@@ -25,112 +32,80 @@ import "../styles/global.css";
 		</div>
 
 		<!-- Navigation Links -->
-		<a href={ Astro.base + "/index.html"} target="_blank" class="nav-link home">
+		<a href={Astro.base + "index.html"} target="_blank" class="nav-link home">
 			<i class="fas fa-home"></i>
 		</a>
-		<a href={ Astro.base + "https://github.com/Kevinbrito"} target="_blank" class="nav-link github" aria-label="github">
+		<a href="https://github.com/Kevinbrito" target="_blank" class="nav-link github" aria-label="github">
 			<i class="fab fa-github"></i>
 		</a>
-		<a href={ Astro.base + "documents/Kevin Brito Resume 2025.pdf"} target="_blank" class="nav-link resume">
+		<a href={Astro.base + "documents/Kevin Brito Resume 2025.pdf"} target="_blank" class="nav-link resume">
 			<i class="fas fa-file-invoice"></i>
 		</a>
-		<a href={ Astro.base + "https://www.linkedin.com/in/kevin-brito-9297a992/"} target="_blank" class="nav-link linkedin">
+		<a href="https://www.linkedin.com/in/kevin-brito-9297a992/" target="_blank" class="nav-link linkedin">
 			<i class="fab fa-linkedin"></i>
 		</a>
 
 		<script>
 			// Navigation Animation Manager
 			class NavigationAnimator {
-				navLinks: NodeListOf<Element>;
-
+				navLinks;
 				constructor() {
 					this.navLinks = document.querySelectorAll('.nav-link');
 					this.init();
 				}
 
-				init(): void {
-					this.navLinks.forEach((link: Element) => {
-						this.setupAnimation(link as HTMLElement);
-						this.addAnimationEndListener(link as HTMLElement);
-						this.addHoverEffects(link as HTMLElement);
+				init() {
+					this.navLinks.forEach((link) => {
+						this.setupAnimation(link);
+						this.addAnimationEndListener(link);
+						this.addHoverEffects(link);
 					});
 				}
 
-				setupAnimation(link: HTMLElement): void {
-					// Random position (5% to 95% of screen width)
+				setupAnimation(link) {
 					const randomLeft = Math.random() * 90 + 5;
 					link.style.left = `${randomLeft}%`;
-					
-					// Random duration (12s to 25s)
 					const randomDuration = Math.random() * 13 + 12;
 					link.style.animationDuration = `${randomDuration}s`;
-					
-					// Random delay (0s to 8s)
 					const randomDelay = Math.random() * 8;
 					link.style.animationDelay = `${randomDelay}s`;
-					
-					// Reset animation
 					this.resetAnimation(link, randomDuration);
 				}
 
-				resetAnimation(link: HTMLElement, duration: number): void {
+				resetAnimation(link, duration) {
 					link.style.animation = 'none';
-					link.offsetHeight; // Trigger reflow
+					link.offsetHeight;
 					link.style.animation = `floatUp ${duration}s linear infinite`;
 				}
 
-				addAnimationEndListener(link: HTMLElement): void {
+				addAnimationEndListener(link) {
 					link.addEventListener('animationend', () => {
-						setTimeout(() => {
-							this.setupAnimation(link);
-						}, Math.random() * 2000 + 500); // 0.5s to 2.5s delay
+						setTimeout(() => this.setupAnimation(link), Math.random() * 2000 + 500);
 					});
 				}
 
-				addHoverEffects(link: HTMLElement): void {
-					// Mouse enter - suspend floating but keep spinning
-					link.addEventListener('mouseenter', () => {
-						link.classList.add('suspended');
-					});
-
-					// Mouse leave - immediately resume floating
-					link.addEventListener('mouseleave', () => {
-						link.classList.remove('suspended');
-					});
-
-					// Click - brief suspension for visual feedback
+				addHoverEffects(link) {
+					link.addEventListener('mouseenter', () => link.classList.add('suspended'));
+					link.addEventListener('mouseleave', () => link.classList.remove('suspended'));
 					link.addEventListener('click', () => {
 						link.classList.add('suspended');
-						
-						// Resume after brief click feedback
-						setTimeout(() => {
-							link.classList.remove('suspended');
-						}, 200); // 200ms suspension after click
+						setTimeout(() => link.classList.remove('suspended'), 200);
 					});
 				}
 			}
 
-			// Initialize when DOM is ready
-			document.addEventListener('DOMContentLoaded', () => {
-				new NavigationAnimator();
-			});
+			document.addEventListener('DOMContentLoaded', () => new NavigationAnimator());
 		</script>
 	</body>
 </html>
 
 <style>
-	/* ============================================
-	   BASE STYLES
-	   ============================================ */
 	html, body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
 	}
 
-	/* ============================================
-	   NAVIGATION LINKS
-	   ============================================ */
 	.nav-link {
 		position: fixed;
 		bottom: -100px;
@@ -170,35 +145,16 @@ import "../styles/global.css";
 	}
 
 	@keyframes spinOnly {
-		0% {
-			transform: scale(1.1) rotate(0deg);
-		}
-		100% {
-			transform: scale(1.1) rotate(360deg);
-		}
+		0% { transform: scale(1.1) rotate(0deg); }
+		100% { transform: scale(1.1) rotate(360deg); }
 	}
 
-	.nav-link i {
-		font-size: 1.5rem;
-	}
+	.nav-link i { font-size: 1.5rem; }
 
-	/* ============================================
-	   ANIMATIONS
-	   ============================================ */
 	@keyframes floatUp {
-		0% {
-			transform: translate3d(0, 0, 0) rotate(0deg);
-			opacity: 0.8;
-		}
-		10% {
-			opacity: 1;
-		}
-		90% {
-			opacity: 0.8;
-		}
-		100% {
-			transform: translate3d(0, -100vh, 0) rotate(720deg);
-			opacity: 0;
-		}
+		0%   { transform: translate3d(0,0,0) rotate(0deg); opacity: 0.8; }
+		10%  { opacity: 1; }
+		90%  { opacity: 0.8; }
+		100% { transform: translate3d(0,-100vh,0) rotate(720deg); opacity: 0; }
 	}
 </style>
