@@ -17,6 +17,11 @@ body {
       touch-action: none; /* Disables swipe-based scrolling */
       height: 100vh;
     }
+
+    .nav-link {
+        /* Ensure links don't go off-screen horizontally */
+        left: clamp(5%, var(--link-left, 50%), 90%) !important;
+      }
   }
 
 /* ============================================
