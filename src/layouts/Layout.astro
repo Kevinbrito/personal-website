@@ -4,157 +4,153 @@ import "../styles/global.css";
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href={Astro.base + "favicon.svg"} />
-		<meta name="generator" content={Astro.generator} />
-		<title>Kevin Brito</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Kevin Brito</title>
 
-		<!-- Font Awesome Icons (CDN, do NOT prepend Astro.base) -->
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-			integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		/>
-	</head>
-	<body>
-		<!-- Background Animation -->
-		<div class="gradient">
-			<ul class="circles">
-				<li></li><li></li><li></li><li></li><li></li>
-				<li></li><li></li><li></li><li></li><li></li>
-				<li></li><li></li><li></li><li></li><li></li>
-				<li></li><li></li><li></li><li></li><li></li>
-			</ul>
-		</div>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="gradient">
+      <ul class="circles">
+        <li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li>
+      </ul>
+    </div>
 
-		<!-- Navigation Links -->
-		<a href={Astro.base + "index.html"} target="_blank" class="nav-link home">
-			<i class="fas fa-home"></i>
-		</a>
-		<a href="https://github.com/Kevinbrito" target="_blank" class="nav-link github" aria-label="github">
-			<i class="fab fa-github"></i>
-		</a>
-		<a href={Astro.base + "documents/Kevin Brito Resume 2025.pdf"} target="_blank" class="nav-link resume">
-			<i class="fas fa-file-invoice"></i>
-		</a>
-		<a href="https://www.linkedin.com/in/kevin-brito-9297a992/" target="_blank" class="nav-link linkedin">
-			<i class="fab fa-linkedin"></i>
-		</a>
+    <a href="index.html" target="_blank" class="nav-link home">
+      <i class="fas fa-home"></i>
+    </a>
+    <a href="https://github.com/Kevinbrito" target="_blank" class="nav-link github" aria-label="github">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="documents/Kevin Brito Resume 2025.pdf" target="_blank" class="nav-link resume">
+      <i class="fas fa-file-invoice"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/kevin-brito-9297a992/" target="_blank" class="nav-link linkedin">
+      <i class="fab fa-linkedin"></i>
+    </a>
 
-		<script>
-			// Navigation Animation Manager
-			class NavigationAnimator {
-				navLinks;
-				constructor() {
-					this.navLinks = document.querySelectorAll('.nav-link');
-					this.init();
-				}
+    <script>
+      class NavigationAnimator {
+        navLinks;
+        constructor() {
+          this.navLinks = document.querySelectorAll('.nav-link');
+          this.init();
+        }
 
-				init() {
-					this.navLinks.forEach((link) => {
-						this.setupAnimation(link);
-						this.addAnimationEndListener(link);
-						this.addHoverEffects(link);
-					});
-				}
+        init() {
+          this.navLinks.forEach((link) => {
+            this.setupAnimation(link);
+            this.addAnimationEndListener(link);
+            this.addHoverEffects(link);
+          });
+        }
 
-				setupAnimation(link) {
-					const randomLeft = Math.random() * 90 + 5;
-					link.style.left = `${randomLeft}%`;
-					const randomDuration = Math.random() * 13 + 12;
-					link.style.animationDuration = `${randomDuration}s`;
-					const randomDelay = Math.random() * 8;
-					link.style.animationDelay = `${randomDelay}s`;
-					this.resetAnimation(link, randomDuration);
-				}
+        setupAnimation(link) {
+          const randomLeft = Math.random() * 90 + 5;
+          link.style.left = `${randomLeft}%`;
+          const randomDuration = Math.random() * 13 + 12;
+          link.style.animationDuration = `${randomDuration}s`;
+          const randomDelay = Math.random() * 8;
+          link.style.animationDelay = `${randomDelay}s`;
+          this.resetAnimation(link, randomDuration);
+        }
 
-				resetAnimation(link, duration) {
-					link.style.animation = 'none';
-					link.offsetHeight;
-					link.style.animation = `floatUp ${duration}s linear infinite`;
-				}
+        resetAnimation(link, duration) {
+          link.style.animation = 'none';
+          link.offsetHeight;
+          link.style.animation = `floatUp ${duration}s linear infinite`;
+        }
 
-				addAnimationEndListener(link) {
-					link.addEventListener('animationend', () => {
-						setTimeout(() => this.setupAnimation(link), Math.random() * 2000 + 500);
-					});
-				}
+        addAnimationEndListener(link) {
+          link.addEventListener('animationend', () => {
+            setTimeout(() => this.setupAnimation(link), Math.random() * 2000 + 500);
+          });
+        }
 
-				addHoverEffects(link) {
-					link.addEventListener('mouseenter', () => link.classList.add('suspended'));
-					link.addEventListener('mouseleave', () => link.classList.remove('suspended'));
-					link.addEventListener('click', () => {
-						link.classList.add('suspended');
-						setTimeout(() => link.classList.remove('suspended'), 200);
-					});
-				}
-			}
+        addHoverEffects(link) {
+          link.addEventListener('mouseenter', () => link.classList.add('suspended'));
+          link.addEventListener('mouseleave', () => link.classList.remove('suspended'));
+          link.addEventListener('click', () => {
+            link.classList.add('suspended');
+            setTimeout(() => link.classList.remove('suspended'), 200);
+          });
+        }
+      }
 
-			document.addEventListener('DOMContentLoaded', () => new NavigationAnimator());
-		</script>
-	</body>
+      document.addEventListener('DOMContentLoaded', () => new NavigationAnimator());
+    </script>
+  </body>
 </html>
 
 <style>
-	html, body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 
-	.nav-link {
-		position: fixed;
-		bottom: -100px;
-		z-index: 10;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 60px;
-		height: 60px;
-		border-radius: 50%;
-		background: rgba(255, 255, 255, 0.1);
-		backdrop-filter: blur(10px);
-		border: 1px solid rgba(255, 255, 255, 0.2);
-		color: white;
-		text-decoration: none;
-		transition: all 0.3s ease;
-		animation: floatUp 20s linear infinite;
-		will-change: transform, opacity;
-		backface-visibility: hidden;
-		transform: translateZ(0);
-	}
+  .nav-link {
+    position: fixed;
+    bottom: -100px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    animation: floatUp 20s linear infinite;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
 
-	.nav-link:hover {
-		background: rgba(255, 255, 255, 0.2);
-		transform: translateY(-2px);
-		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-		animation-play-state: paused;
-		transition: all 0.3s ease;
-	}
+  .nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation-play-state: paused;
+    transition: all 0.3s ease;
+  }
 
-	.nav-link.suspended {
-		animation-play-state: paused !important;
-		background: rgba(255, 255, 255, 0.25);
-		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-		transform: scale(1.1);
-		animation: spinOnly 0.5s linear infinite;
-	}
+  .nav-link.suspended {
+    animation-play-state: paused !important;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+    animation: spinOnly 0.5s linear infinite;
+  }
 
-	@keyframes spinOnly {
-		0% { transform: scale(1.1) rotate(0deg); }
-		100% { transform: scale(1.1) rotate(360deg); }
-	}
+  @keyframes spinOnly {
+    0% { transform: scale(1.1) rotate(0deg); }
+    100% { transform: scale(1.1) rotate(360deg); }
+  }
 
-	.nav-link i { font-size: 1.5rem; }
+  .nav-link i { font-size: 1.5rem; }
 
-	@keyframes floatUp {
-		0%   { transform: translate3d(0,0,0) rotate(0deg); opacity: 0.8; }
-		10%  { opacity: 1; }
-		90%  { opacity: 0.8; }
-		100% { transform: translate3d(0,-100vh,0) rotate(720deg); opacity: 0; }
-	}
+  @keyframes floatUp {
+    0%   { transform: translate3d(0,0,0) rotate(0deg); opacity: 0.8; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.8; }
+    100% { transform: translate3d(0,-100vh,0) rotate(720deg); opacity: 0; }
+  }
 </style>
