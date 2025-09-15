@@ -19,8 +19,13 @@ body {
     }
 
     .nav-link {
-        /* Ensure links don't go off-screen horizontally */
-        left: clamp(5%, var(--link-left, 50%), 90%) !important;
+        /* prevent links from leaving viewport */
+        .nav-link {
+            /* ensure they stay fully visible */
+            /* no fixed left value, keep JS-generated randomness */
+            /* just make sure they can’t exceed screen width */
+            max-width: calc(100vw - 60px); /* 60px = link width */
+          }
       }
   }
 
