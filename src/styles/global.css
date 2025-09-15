@@ -10,6 +10,15 @@ body {
     min-height: 100vh;
 }
 
+/* Lock scrolling on mobile devices */
+@media (max-width: 768px) {
+    html, body {
+      overflow: hidden; /* Prevents scrolling */
+      touch-action: none; /* Disables swipe-based scrolling */
+      height: 100%;
+    }
+  }
+
 /* ============================================
    FLOATING BUBBLES ANIMATION
    ============================================ */
