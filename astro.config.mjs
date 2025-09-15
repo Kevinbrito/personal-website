@@ -7,5 +7,6 @@ import react from '@astrojs/react';
 export default defineConfig({
   integrations: [react()],
   output: 'static',
-  base: '/personal-website/'
+  base: '/personal-website/',
+  outDir: 'docs'
 });
